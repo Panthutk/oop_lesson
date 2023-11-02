@@ -80,10 +80,16 @@ class Account:
         self.balance += amount
 
     def withdraw(self, amount):
+        '''
+        With draw money from bank
+        '''
         if self.balance >= amount:
             self.balance -= amount
 
     def __str__(self):
+        '''
+        return statement with ready to print the account data.
+        '''
         return '{' + str(self.account_number) + ',' + str(self.type) + ',' + str(self.account_name) + ',' + str(self.balance) + '}'
 
 
