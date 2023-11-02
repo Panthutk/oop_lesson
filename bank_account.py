@@ -1,8 +1,20 @@
 class AccountDB:
+    '''
+    Set database for banking system to insert , search , delete and return str in self.account_database
+    '''
+
     def __init__(self):
+        '''
+        Set self.account_database name
+        '''
         self.account_database = []
 
     def insert(self, account):
+        '''
+        Used __search_private to search that if account is none exist will return -1 and will enter if statement
+        then it will append to self.account_database else will print Duplicate account to alert user
+
+        '''
         index = self.__search_private(account.account_number)
         if index == -1:
             self.account_database.append(account)
@@ -10,18 +22,30 @@ class AccountDB:
             print(account, "Duplicated account; nothing to be insert")
 
     def __search_private(self, account_num):
+        '''
+        Using private to search in self.account_database then if it matching, it will return i but if none exist it will 
+        return -1 to used in other functions
+        '''
         for i in range(len(self.account_database)):
             if self.account_database[i].account_number == account_num:
                 return i
         return -1
 
     def search_public(self, account_num):
+        '''
+        This will allowed user to see their account by for loop in self.account_database to find account then if it match it will
+        return account 
+        '''
         for account in self.account_database:
             if account.account_number == account_num:
                 return account
         return None
 
     def delete(self, account_num):
+        '''
+        Search in __search_private if it index != -1 it will delete account in self.account_database else will return invalid 
+        with nothing change       
+        '''
         index = self.__search_private(account_num)
         if index != -1:
             del self.account_database[index]
@@ -29,6 +53,9 @@ class AccountDB:
             print(account_num, "invalid account number; nothing to be deleted.")
 
     def __str__(self):
+        '''
+        return account with for loop
+        '''
         s = ''
         for account in self.account_database:
             s += str(account) + ", "
@@ -36,13 +63,20 @@ class AccountDB:
 
 
 class Account:
+
     def __init__(self, num, type, account_name, balance):
+        '''
+        Set statement for 1 account number
+        '''
         self.account_number = num
         self.type = type
         self.account_name = account_name
         self.balance = balance
 
     def deposit(self, amount):
+        '''
+        deposit money to bank account
+        '''
         self.balance += amount
 
     def withdraw(self, amount):
